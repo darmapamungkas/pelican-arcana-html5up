@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title|striptags }} | {{ super() }}{% endblock title %}
+
+{% block content %}
+
+    <!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row 200%">
+							<div class="8u 12u(narrower)">
+								<div id="content">
+
+									<!-- Content -->
+
+										<article>
+                      {% for article in dates %}
+                      <section>
+                          <!-- <a href="#" class="image feature"><img src="images/pic03.jpg" alt="" /></a> -->
+                          <header>
+                              <a href="/{{ article.url }}"><h3>{{ article.title }}</h3></a>
+                          </header>
+                          <p>{{ article.summary|striptags }}</p>
+                      </section>
+                      {% endfor %}
+										</article>
+
+								</div>
+							</div>
+							<div class="4u 12u(narrower)">
+								<div id="sidebar">
+
+									<!-- Sidebar -->
+
+										<section>
+                      {% include 'sidebar.html' %}
+										</section>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+{% endblock content %}
+
+

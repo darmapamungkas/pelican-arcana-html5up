@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title|striptags }} | {{ super() }}{% endblock title %}
+
+{% block content %}
+
+    <!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row 200%">
+							<div class="8u 12u(narrower)">
+								<div id="content">
+
+									<!-- Content -->
+
+										<article>
+											<header>
+                        <h2>{{ article.title }}</h2>
+                        <!-- add page sub title here -->
+                        <p>
+                            {% if article.tags %}
+                              {% for tag in article.tags %}
+                                <a href="/{{ tag.url }}">{{ tag }}</a>
+                              {% endfor %}
+                              {% endif %}
+                            posted <span data-date="{{ article.locale_date }}" id="pretty_date"></span>
+                        </p>
+											</header>
+
+                      {% if article.banner %}
+                        <span class="image featured"><img src="{{ article.banner}}" alt="" /></span>
+                        <p class="tags">
+                      {% endif %}
+                        <p>{{ article.content }}</p>
+										</article>
+
+								</div>
+							</div>
+							<div class="4u 12u(narrower)">
+								<div id="sidebar">
+
+									<!-- Sidebar -->
+
+										<section>
+                      {% include 'sidebar.html' %}
+										</section>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+{% endblock content %}
+
+

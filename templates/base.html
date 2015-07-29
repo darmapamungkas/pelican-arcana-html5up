@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+    {% block head %)
+    <title>{% block title %}{{ SITENAME }} {{ TAGLINE }}{% endblock title %}<</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    {% if FEED_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }}-Feed" />
+    {% endif %}
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+    {% endblock head %}
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+          <h1>{{ SITENAME }} {{ TAGLINE }}</h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+              <ul>
+             {% for cat, articleids in categories %}
+                <li {% if cat == category %}class="active"{% endif %}>
+                <a href="/category/{{ cat|lower }}.html">{% if CATEGORYICONS[cat] %}<span class="icon fa-{{CATEGORYICONS[cat]}}"></span>{% endif %}
+                  {{ cat }}</a><ul>
+                    {% for articleid in articleids %}
+                    <li><a href="/{{ articleid|lower }}.html">{{ articleid }}</li>
+                    {% endfor %}
+                    </ul>
+                 </li>
+              {% endfor %}
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Banner -->
+    {% block banner %}{% endblock %}
+
+			<!-- Highlights -->
+    {% block highlights %}{% endblock %}
+
+			<!-- Gigantic Heading -->
+    {% block giantheader %}{% endblock %}
+
+			<!-- Posts -->
+    {% block content %}{% endblock %}
+
+			<!-- CTA -->
+    {% block CTA %}{% endblock %}
+
+			<!-- Footer -->
+    {% include 'footer.html' %}
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
